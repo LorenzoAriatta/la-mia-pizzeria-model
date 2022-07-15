@@ -23,8 +23,11 @@ namespace la_mia_pizzeria_static.Migrations
 
             modelBuilder.Entity("Ingrediente", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -37,8 +40,8 @@ namespace la_mia_pizzeria_static.Migrations
 
             modelBuilder.Entity("IngredientePizza", b =>
                 {
-                    b.Property<string>("ingredientsId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ingredientsId")
+                        .HasColumnType("int");
 
                     b.Property<int>("pizzasId")
                         .HasColumnType("int");
