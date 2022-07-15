@@ -15,6 +15,8 @@ public class Pizza
 
     public double Price { get; set; }
 
+    public List<Ingrediente> ingredients { get; set; }
+
     public Pizza(string name, string description, string image, double price, int id)
     {
         Name = name;
