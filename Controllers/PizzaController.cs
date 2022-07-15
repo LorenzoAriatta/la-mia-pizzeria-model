@@ -23,6 +23,8 @@ namespace la_mia_pizzeria_static.Controllers
             using (PizzaContext db = new PizzaContext())
             {
                 Pizza detail = db.Pizza.Where(pizza => pizza.Id == id).FirstOrDefault();
+
+               // Ingrediente ingredients = db.Ingredienti.Where(ingredients => ingredients.Id == id);
                 
                 if(detail == null)
                 {
