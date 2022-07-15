@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    // List<Pizza> pizzas = new List<Pizza>();
+
+    PizzaList pizzas = new PizzaList();
+    List<Pizza> listTemp = new List<Pizza>();
+
+    Pizza quattroFormaggi = new Pizza("Quattro Formaggi", "La Pizza ai quattro formaggi nella cucina italiana è una varietà di pizza che viene condita con quattro tipi di formaggio (mozzarella, fontina, gorgonzola, parmigiano reggiano) sciolti insieme con salsa di pomodoro o senza pomodoro. È popolare in tutto il mondo ed è uno degli elementi iconici dei menu delle pizzerie.", "https://www.schaer.com/sites/default/files/styles/portrait_sm/public/2022-04/SCHAR_PRODOTTI_PIZZA_4FORMAGGI.jpg?h=9b8ecc1b&itok=VibesmY3", 8.50, 1);
+    Pizza prosciuttoFunghi = new Pizza("Pizza Prosciutto & Funghi", "Cosa sarebbe l’Italia senza la Dolce Vita, il pizzaiolo senza la pizza, il prosciutto senza i funghi? Esatto: solo una cosa a metà. Ma il pizzaiolo Scär lavora sempre e solo a tutto tondo.Con maestria riunisce gli ingredienti nella pizza Prosciutto e Funghi. E il gusto diventa più rotondo quando la pizza viene assaporata da una cerchia di amici, o in compagnia dei propri cari.", "https://www.schaer.com/sites/default/files/styles/portrait_sm/public/2022-04/SCHAR_PRODOTTI_PIZZA_PROSCIUTTO%26FUNGHI.jpg?h=05b80a3d&itok=ALCKRtgB", 9.80, 2);
+    Pizza salame = new Pizza("Pizza Salame", "Una performance da film, o meglio: ogni volta che trascorri la serata con gli amici puoi presentare una generosa pizza al salame! Lei è una star italiana dal carattere amabile e dal gusto rotondo.Il tappeto rosso di pomodoro si stende su un morbido impasto, che lievita con leggerezza e accoglie la miglior mozzarella su una base croccante. Pronta per Oscar, ma anche per… tutti quelli che non si chiamano come la desiderata statuetta!", "https://www.schaer.com/sites/default/files/styles/portrait_sm/public/2022-04/SCHAR_PRODOTTI_PIZZA_SALAME.jpg?h=5793a142&itok=9BfDqSkk", 7.20, 3);
+    Pizza veggie = new Pizza("Pizza Veggie", "È vero che il tempo porta valore e che le cose per essere buone hanno bisogno di tempo? Ma chi l’ha detto?! La pizza Veggie è pronta in un attimo per essere gustata e per regalarti un momento di puro sapore mediterraneo.La base è sottile e croccante e farcita con ottima verdura fresca. Morale della favola: ciò che è pronto in un attimo, va gustato a luuungooo!", "https://www.schaer.com/sites/default/files/styles/portrait_sm/public/2022-04/SCHAR_PRODOTTI_PIZZA_VEGGIE.jpg?h=b676d000&itok=Thosm8ob", 10.50, 4);
+    Pizza margherita = new Pizza("Pizza Margherita", "La Pizza Margherita - come farne a meno? Niente paura, ci ha pensato Schär: l'ha fatta con la buona pasta madre, senza glutine e con l'olio d'oliva, l'ha farcita con mozzarella filante e pomodoro di primissima qualità, l'ha rifinita con un pizzico d'origano, poi l'ha cotta su pietra e subito congelata.Voi non dovrete fare altro che togliere questa gustosissima bontà italiana dal congelatore, pazientare per 10 minuti per darle il tempo di risvegliarsi dal suo sonno ghiacciato e ripassarla in forno per pochi minuti. Ed ecco la spettacolare entrata della regina delle pizze: gustate tutta la fragranza della Pizza Margherita di Schär!", "https://www.schaer.com/sites/default/files/styles/portrait_sm/public/2022-04/SCHAR_PRODOTTI_PIZZA_MARGHERITA_1.jpg?h=8425f73a&itok=3rQtUfsk", 6.50, 5);
+    Pizza margheritaNoLactose = new Pizza("Pizza Margherita Lactose Free", "Se la cliente non solo è Regina, ma si chiama anche Margherita, allora serve un prodotto di prima classe. La Regina Margherita fu colei che già nel XIX secolo fece creare a Napoli il classico italiano nei colori nazionali: la pizza.E oggi Schär vi offre addirittura la versione senza lattosio! Un impasto sottile e croccante cotto nel forno a legna, farcito con mozzarella di prima qualità e ricoperto di salsa di pomodoro e spezie. E come allora anche oggi il basilico aggiunge quel tocco di verde fra il rosso ed il bianco. Un piatto regale!", "https://www.schaer.com/sites/default/files/styles/portrait_sm/public/2022-04/SCHAR_PRODOTTI_PIZZA_MARGHERITA_LF.jpg?h=d7da52bb&itok=4GxchV-l", 6.50, 6);
+
+    pizzas.AddToList(quattroFormaggi);
+    pizzas.AddToList(prosciuttoFunghi);
+    pizzas.AddToList(salame);
+    pizzas.AddToList(veggie);
+    pizzas.AddToList(margherita);
+    pizzas.AddToList(margheritaNoLactose);
+
+    listTemp.Add(quattroFormaggi);
+    listTemp.Add(prosciuttoFunghi);
+    listTemp.Add(salame);
+    listTemp.Add(veggie);
+    listTemp.Add(margherita);
+    listTemp.Add(margheritaNoLactose);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X          +R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Index</title>
+</head>
+    <body>
+            <h1 class="display-4 text-center">Our Pizzas</h1>
+        <div class="d-flex flex-wrap">
+            <div class="row justify-content-center" style="column-gap:20px; row-gap:20px">
+                @foreach(Pizza pizza in listTemp)
+                {
+                    <div class="card col-3 text-center gx-3">
+                        <img style="height:300px" src="@pizza.Image" class="post-image text-center"/>
+                        <h2 class="text-danger">@pizza.Name</h2>
+                        <p><span class="fw-bold">Description: </span>@pizza.Description</p>
+                        <p class="fw-bold">Price: @pizza.Price&euro;</p>
+                        <a href="/Pizza/Details/@pizza.ID">See the details</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </body>
+</html>

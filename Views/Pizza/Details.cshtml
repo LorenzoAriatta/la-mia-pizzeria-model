@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "PizzaDetail";
+}
+
+@{
+    PizzaList list = new PizzaList();
+
+    list.GetList();
+}
+
+<h1>Dettaglio Pizza</h1>
+
+@foreach(Pizza pizza in list.GetList()){
+    @if(pizza.ID == 1){
+        <h1>@pizza.Name</h1>
+    }
+}
