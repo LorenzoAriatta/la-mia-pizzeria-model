@@ -24,14 +24,14 @@ namespace la_mia_pizzeria_static.Controllers
             {
                 Pizza detail = db.Pizza.Where(pizza => pizza.Id == id).FirstOrDefault();
 
-               // Ingrediente ingredients = db.Ingredienti.Where(ingredients => ingredients.Id == id);
-                
-                if(detail == null)
+
+                if (detail == null)
                 {
                     return View("Error");
                 }
                 else
                 {
+                    db.Entry(detail).Collection("ingredients").Load();
                     return View("Details", detail);
                 }
             }
