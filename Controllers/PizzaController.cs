@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using la_mia_pizzeria_static.Database;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace la_mia_pizzeria_static.Controllers
@@ -8,13 +9,30 @@ namespace la_mia_pizzeria_static.Controllers
         // GET: PizzaController
         public ActionResult Index()
         {
-            return View();
+            using(PizzaContext db = new PizzaContext())
+            {
+                List<Pizza> pizzaList = db.Pizza.ToList();
+                return View("Index", pizzaList);
+            }
         }
 
         // GET: PizzaController/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            return View();
+            using (PizzaContext db = new PizzaContext())
+            {
+                Pizza detail = db.Pizza.Where(pizza => pizza.Id == id).FirstOrDefault();
+                
+                if(detail == null)
+                {
+                    return View("Error");
+                }
+                else
+                {
+                    return View("Details", detail);
+                }
+            }
         }
 
         // GET: PizzaController/Create
